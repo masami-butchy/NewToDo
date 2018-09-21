@@ -8,6 +8,6 @@ public class Details_View extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details__view);
+        setContentView(R.layout.activity_details_view);
     }
 }
