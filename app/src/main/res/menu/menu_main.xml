@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/ALL"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="ALL" />
+    <item
+        android:id="@+id/ACTIVE"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="ACTIVE" />
+    <item
+        android:id="@+id/COMPLETE"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+        android:title="COMPLETE" />
+</menu>
