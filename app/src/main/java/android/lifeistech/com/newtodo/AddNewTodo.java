@@ -34,6 +34,7 @@ public class AddNewTodo extends AppCompatActivity {
                RealmToDoObject realmToDoObject = realm.createObject(RealmToDoObject.class);
                realmToDoObject.title = title;
                realmToDoObject.content = content;
+               realmToDoObject.checkBoxisChecked = false;
             }
         });
     }

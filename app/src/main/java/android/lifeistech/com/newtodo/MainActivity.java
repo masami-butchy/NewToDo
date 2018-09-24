@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Realm.init(getApplicationContext());
-        realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
 
         mListView = (ListView) findViewById(R.id.listViewMain);
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setmListComponent();
 
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
           @Override
           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
               Intent intent = new Intent (parent.getContext(),DetailActivity.class);
               startActivity(intent);
           }
-      });
+      });*/
         // Realm設定ここから
         //Realm.init(this);
         //RealmConfiguration config = new RealmConfiguration.Builder().build();
@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void setmListComponent(){
 
-        RealmResults<RealmToDoObject> results = realm.where(RealmToDoObject.class).findAll();
+        RealmResults<RealmToDoObject> results = null;
+        results = realm.where(RealmToDoObject.class).findAll();
         List<RealmToDoObject> item = realm.copyFromRealm(results);
         mToDoListAdapter = new ToDoListAdapter(this, R.layout.activity_list_component, item);
         mListView.setAdapter(mToDoListAdapter);
