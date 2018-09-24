@@ -67,7 +67,7 @@ public class ToDoListAdapter extends ArrayAdapter<RealmToDoObject>{
             viewHolder.titleTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(),DetailActivity.class);
+                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
                     v.getContext().startActivity(intent);
                 }
             });

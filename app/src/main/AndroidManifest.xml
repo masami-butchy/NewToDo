@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddNewTodo" />
-        <activity android:name=".ListComponent"></activity>
+        <activity android:name=".DetailActivity" />
     </application>
 
 </manifest>

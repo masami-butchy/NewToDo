@@ -1,8 +1,6 @@
 package android.lifeistech.com.newtodo;
 
 import android.app.Application;
-import android.view.View;
-
 import io.realm.Realm;
 
 public class NewToDoApplication extends Application{
