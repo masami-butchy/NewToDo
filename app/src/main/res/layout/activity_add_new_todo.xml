@@ -13,12 +13,12 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            tools:text="text" />
 
         <TextView
             android:id="@+id/textView"
@@ -28,13 +28,25 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editContentText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:ems="10"
-            android:gravity="bottom"
+            android:gravity="top"
             android:inputType="textPersonName" />
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="25dp"
+        android:clickable="true"
+        android:onClick="create"
+        app:srcCompat="@android:drawable/checkbox_on_background" />
 
 </RelativeLayout>
