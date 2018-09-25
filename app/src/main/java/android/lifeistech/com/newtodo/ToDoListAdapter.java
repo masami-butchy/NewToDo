@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,14 +21,18 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import io.realm.Realm;
+
 public class ToDoListAdapter extends ArrayAdapter<RealmToDoObject>{
 
     List<RealmToDoObject> mListComponent;
-
-    public ToDoListAdapter(Context context, int layoutResourceId, List<RealmToDoObject> objects){
+    Realm realm;
+    public ToDoListAdapter(Context context, int layoutResourceId, List<RealmToDoObject> objects, Realm bgrealm){
         super(context, layoutResourceId, objects);
 
         mListComponent = objects;
+        realm = bgrealm;
+
     }
 
     @Override
@@ -47,27 +53,36 @@ public class ToDoListAdapter extends ArrayAdapter<RealmToDoObject>{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final RealmToDoObject item = getItem(position);
+        final RealmToDoObject realmToDoObject = getItem(position);
 
-        if (item != null){
-            viewHolder.titleTextView.setText(item.title);
-            viewHolder.checkBox.setChecked(item.checkBoxisChecked);
+        if (realmToDoObject != null){
+            viewHolder.titleTextView.setText(realmToDoObject.title);
+            viewHolder.checkBox.setChecked(realmToDoObject.checkBoxisChecked);
             viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (viewHolder.checkBox.isChecked()){
-                        viewHolder.checkBox.setChecked(false);
-                    }
-                    else if (viewHolder.checkBox.isChecked()){
-                        viewHolder.checkBox.setChecked(true);
-                    }
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm bgrealm) {
+                            if (realmToDoObject.checkBoxisChecked == true){
+                                Log.d("WWWWWWWWWWWWWWWW", "XXXXXXXXXXXXXXXXXXX" + realmToDoObject.checkBoxisChecked);
+                                realmToDoObject.checkBoxisChecked = false;
+                            }
+                            else {
+                                realmToDoObject.checkBoxisChecked = true;
+                            }
+                        }
+                    });
                 }
             });
 
-            viewHolder.titleTextView.setOnClickListener(new View.OnClickListener() {
+            viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v){
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                    //intent.putExtra("checkBoxisChecked", item.checkBoxisChecked);
+                    intent.putExtra("title", realmToDoObject.title);
+                    //intent.putExtra("content", item.content);
                     v.getContext().startActivity(intent);
                 }
             });
@@ -80,10 +95,12 @@ public class ToDoListAdapter extends ArrayAdapter<RealmToDoObject>{
 
         TextView titleTextView;
         CheckBox checkBox;
+        LinearLayout linearLayout;
 
         public ViewHolder(View view){
             titleTextView = (TextView)view.findViewById(R.id.titleTextView);
             checkBox = (CheckBox)view.findViewById(R.id.checkBox);
+            linearLayout = (LinearLayout) view.findViewById(R.id.linearLayout);
         }
     }
 

@@ -46,11 +46,6 @@ public class AddNewTodo extends AppCompatActivity {
         Log.d("wwwwwwwwww","" + title);
         finish();
     }
-    public void check(String title, String content){
-        RealmToDoObject realmToDoObject = new RealmToDoObject();
-        realmToDoObject.title = title;
-        realmToDoObject.content = content;
-    }
 
     @Override
     protected  void onDestroy(){

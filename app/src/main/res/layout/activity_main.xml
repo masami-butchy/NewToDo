@@ -30,8 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:singleLine="true"
-            android:text="ToDoList"
-            android:textSize="18sp" />
+            android:textColor="?android:attr/colorForeground"
+            android:textSize="24sp"
+            tools:text="ALL ToDoList" />
 
         <ListView
             android:id="@+id/listViewMain"
