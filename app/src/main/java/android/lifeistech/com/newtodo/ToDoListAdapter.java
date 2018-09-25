@@ -53,14 +53,15 @@ public class ToDoListAdapter extends ArrayAdapter<RealmToDoObject>{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final RealmToDoObject realmToDoObject = getItem(position);
+        final RealmToDoObject item = getItem(position);
 
-        if (realmToDoObject != null){
-            viewHolder.titleTextView.setText(realmToDoObject.title);
-            viewHolder.checkBox.setChecked(realmToDoObject.checkBoxisChecked);
+        if (item != null){
+            viewHolder.titleTextView.setText(item.title);
+            viewHolder.checkBox.setChecked(item.checkBoxisChecked);
             viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final RealmToDoObject realmToDoObject = realm.where(RealmToDoObject.class).equalTo("content", item.content).findFirst();
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
                         public void execute(Realm bgrealm) {
@@ -81,7 +82,7 @@ public class ToDoListAdapter extends ArrayAdapter<RealmToDoObject>{
                 public void onClick(View v){
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
                     //intent.putExtra("checkBoxisChecked", item.checkBoxisChecked);
-                    intent.putExtra("title", realmToDoObject.title);
+                    intent.putExtra("content", item.content);
                     //intent.putExtra("content", item.content);
                     v.getContext().startActivity(intent);
                 }
