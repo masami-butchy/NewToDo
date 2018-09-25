@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/menuALL"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="ALL" />
+    <item
+        android:id="@+id/menuACTIVE"
+        android:orderInCategory="200"
+        app:showAsAction="never"
+        android:title="ACTIVE" />
+    <item
+        android:id="@+id/menuCOMPLETE"
+        android:orderInCategory="300"
+        app:showAsAction="never"
+        android:title="COMPLETE" />
+</menu>
