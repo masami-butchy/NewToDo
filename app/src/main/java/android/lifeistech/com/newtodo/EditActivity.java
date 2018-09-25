@@ -28,7 +28,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void showDataInEditActivity(){
-        realmToDoObject = realm.where(RealmToDoObject.class).equalTo("title", getIntent().getStringExtra("title")).findFirst();
+        realmToDoObject = realm.where(RealmToDoObject.class).equalTo("content", getIntent().getStringExtra("content")).findFirst();
         editTitleText.setText(String.valueOf(realmToDoObject.title));
         editContentTextView.setText(String.valueOf(realmToDoObject.content));
     }
@@ -44,7 +44,7 @@ public class EditActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), DetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //遷移先のActivityが既存の場合、それより上のActivityを削除
         //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP); //遷移先のActivityを再構成しない
-        intent.putExtra("title", editTitleText.getText().toString());
+        intent.putExtra("content", editContentTextView.getText().toString());
         startActivity(intent);
     }
 
