@@ -77,7 +77,7 @@ public class DetailActivity extends AppCompatActivity {
 
     //クラス内ファンクション関数
     public void showData(){
-        realmToDoObject = realm.where(RealmToDoObject.class).equalTo("title", getIntent().getStringExtra("title")).findFirst();
+        realmToDoObject = realm.where(RealmToDoObject.class).equalTo("content", getIntent().getStringExtra("content")).findFirst();
         detailCheckBox.setChecked(realmToDoObject.checkBoxisChecked);
         detailTitleTextView.setText(String.valueOf(realmToDoObject.title));
         detailContentTextView.setText(String.valueOf(realmToDoObject.content));
@@ -87,7 +87,7 @@ public class DetailActivity extends AppCompatActivity {
     public void edit(View v){
         Intent intent = new Intent(this, EditActivity.class);
         //intent.putExtra("checkBoxisChecked", item.checkBoxisChecked);
-        intent.putExtra("title", detailTitleTextView.getText());
+        intent.putExtra("content", detailContentTextView.getText());
         //intent.putExtra("content", item.content);
         v.getContext().startActivity(intent);
         startActivity(intent);
